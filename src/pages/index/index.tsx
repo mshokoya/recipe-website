@@ -1,16 +1,21 @@
 import styled from 'styled-components';
+import {MainLayout} from '../../components/MainLayout';
+import {GlobalStyle} from '../../utils/globalStyle';
 
 const StyledHeader = styled.h1`
-  font-size: 2em;
-  text-align: left;
-  padding: 16px 16px;
+  ${({theme}) => `
+    font-size: 2em;
+    text-align: left;
+    padding: ${theme['padding-small']} ${theme['padding-small']};
+  `}
 `;
 
 const Index = () => {
   return (
-    <div>
-      <StyledHeader>Index Page</StyledHeader>
-    </div>
+    <MainLayout>
+      <GlobalStyle/>
+        <StyledHeader>Index Page</StyledHeader>
+    </MainLayout>
   );
 };
 
