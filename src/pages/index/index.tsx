@@ -12,7 +12,7 @@ const StyledHeader = styled.h1`
 
 const Index = () => {
   return (
-    <MainLayout>
+    <MainLayout title="Recipes">
       <GlobalStyle/>
         <StyledHeader>Index Page</StyledHeader>
     </MainLayout>

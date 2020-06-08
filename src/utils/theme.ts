@@ -16,17 +16,18 @@ const header_border_color = header_color;
 const border_width = `2px`;
 
 export const theme = {
-  'font-size-xs':font_size_xs,
-  'font-size-sm':font_size_sm,
-  'font-size-md':font_size_md,
-  'font-size-lg':font_size_lg,
-  'font-size-xl':font_size_xl,
-  'margin_zero':margin_zero,
-  'margin_small':margin_small,
-  'padding-zero':padding_zero,
-  'padding-small':padding_small,
-  'heart-color':heart_color,
-  'border-color':border_color,
-  'border-width':border_width,
-  'header-border-color':header_border_color
-}
+  'font-size-xs': font_size_xs,
+  'font-size-sm': font_size_sm,
+  'font-size-md': font_size_md,
+  'font-size-lg': font_size_lg,
+  'font-size-xl': font_size_xl,
+  'padding-zero': padding_zero,
+  'padding-small': padding_small,
+  'margin-zero': margin_zero,
+  'margin-small': margin_small,
+  'heart-color': heart_color,
+  'border-color': border_color,
+  'border-width': border_width,
+  'header-color': header_color,
+  'header-border-color': header_border_color,
+};
