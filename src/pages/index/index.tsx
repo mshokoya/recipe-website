@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {MainLayout} from '../../components/MainLayout';
 import {GlobalStyle} from '../../utils/globalStyle';
+import {RecipesList, queryEnum} from '../../components/RecipesList';
 
 const StyledHeader = styled.h1`
   ${({theme}) => `
@@ -15,6 +16,7 @@ const Index = () => {
     <MainLayout title="Recipes">
       <GlobalStyle/>
         <StyledHeader>Index Page</StyledHeader>
+        <RecipesList parentRoute='recipe' queryType={queryEnum.recipes} />
     </MainLayout>
   );
 };

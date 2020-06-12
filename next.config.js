@@ -8,7 +8,14 @@ const {
   APIKEY,
   PROJECTID,
   BRANCH,
-  CDNBASE
+  CDNBASE,
+  domain,
+  clientId,
+  clientSecret,
+  scope,
+  redirectUri,
+  postLogoutRedirectUri,
+  cookieSecret
 } = process.env
 
 module.exports = withCSS({
@@ -22,5 +29,16 @@ module.exports = withCSS({
       BRANCH,
       CDNBASE
     }
+  },
+  serverRuntimeConfig: {
+    auth: {
+      domain,
+      clientId,
+      clientSecret,
+      scope,
+      redirectUri,
+      postLogoutRedirectUri,
+    },
+    cookieSecret
   }
 });
