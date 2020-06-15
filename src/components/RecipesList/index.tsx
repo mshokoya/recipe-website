@@ -32,24 +32,16 @@ export const RecipesList = ({
   const parentArray = _.get(data, queryType);
   const recipesList = _.map(parentArray, value => _.get(value, 'recipe', value),);
 
-  console.log(parentArray)
-  console.log(recipesList)
-
-  // if (Array.isArray(recipesList[0])){
-  //   recipesList = recipesList[0]
-  // }
-
-  
-
   if (loading) return <Loading />;
   if (error || !recipesList) return <Error errorText={`${error}`} />;
-  if (recipesList.length === 0)
+  if (recipesList.length === 0 || !recipesList[0])
     return (
       <Warning
         warningHeader="No Recipes"
         warningText="No recipes are present. Why not add one?"
       />
     );
+
 
   return (
     <Row>

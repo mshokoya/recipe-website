@@ -19,11 +19,10 @@ const MainHead = ({title}: {title: string}) => (
       name="description"
       content="A recipe discovery app powered by Next.js."
     />
-    <meta name="author" content="codemochi" />
+    <meta name="author" content="michael shokoya" />
     <meta name="keyword" content="next, react, typescript, js" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
-    <meta property="og:url" content="https://next-chop.codemochi.com" />
     <meta property="og:image" content="/logo.svg" />
     <meta
       property="og:description"

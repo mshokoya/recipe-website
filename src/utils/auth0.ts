@@ -19,3 +19,4 @@ export default initAuth0({
     clockTolerance:1000
   }
 });
+

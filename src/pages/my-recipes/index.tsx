@@ -1,12 +1,12 @@
 import { MainLayout } from '../../components/MainLayout';
-import styled from './node_modules/styled-components';
-import * as _ from './node_modules/lodash';
-import Link from './node_modules/next/link';
-import { Row, Col, Button } from './node_modules/antd';
+import styled from 'styled-components';
+import * as _ from 'lodash';
+import Link from 'next/link';
+import { Row, Col, Button } from 'antd';
 import { RecipesList, queryEnum } from '../../components/RecipesList';
 import { useFetchUser } from '../../utils/user';
 import { Loading } from '../../components/Loading';
-import Router from './node_modules/next/router';
+import Router from 'next/router';
 
 const StyledRow = styled(Row)`
   ${({ theme }) => `

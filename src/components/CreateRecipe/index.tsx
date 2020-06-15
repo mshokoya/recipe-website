@@ -16,7 +16,7 @@ import { PictureUploader } from '../PictureUploader';
 import { useState } from 'react';
 
 export const CreateRecipe = () => {
-  const [createRecipeMutation, { loading }] = useMutation(createRecipeGraphQL);
+  const [createRecipeMutation, { loading , error}] = useMutation(createRecipeGraphQL);
   const { user, loading: isFetchingUser } = useFetchUser();
   const [recipeState, setRecipeState] = useState({
     isPicUploading: false,
@@ -51,7 +51,7 @@ export const CreateRecipe = () => {
       title: '',
       description: '',
       content: '',
-      status: 'DRAFT',
+      statusId: 'DRAFT',
       ingredients: [],
     },
     initiateCreateRecipe,
@@ -86,8 +86,8 @@ export const CreateRecipe = () => {
       />
       <Row>
         <GenerateDropdown
-          name="status"
-          value={inputs.status}
+          name="statusId"
+          value={inputs.statusId}
           handleDropdownChange={handleDropdownChange}
         />
         <Col span={4}>
