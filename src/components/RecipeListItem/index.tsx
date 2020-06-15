@@ -4,6 +4,7 @@ import EllipsisText from 'react-ellipsis-text';
 import styled from 'styled-components';
 import {Col} from 'antd';
 import Link from 'next/link';
+import {LikeButton} from '../LikeButton';
 
 const StyledRecipe = styled(Col)`
   ${({theme}) => `
@@ -51,7 +52,8 @@ export const RecipeListItem = ({
   recipe: Recipe;
   parentRoute: string;
 }) => {
-  const {title, description, images, userLikes, id} = recipe
+  const {title, description, images, userLikes, id} = recipe;
+
   return (
     <StyledRecipe
       xs={{span: 24}}
@@ -63,7 +65,10 @@ export const RecipeListItem = ({
         <Link href={`/${parentRoute}/${id}`}>
           <div>{images ? <GraphImg image={images}/> : null}</div>
         </Link>
-        <h3>{title}</h3>
+        <h3>
+          {title}
+          <LikeButton userLikes={userLikes} recipeId={id} />
+        </h3>
         <p><EllipsisText text={description} length={110}/></p>
       </div>
     </StyledRecipe>
