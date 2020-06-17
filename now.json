@@ -1,4 +1,5 @@
 {
+  "name": "nextchop",
   "version": 2,
   "build": {
     "env": {

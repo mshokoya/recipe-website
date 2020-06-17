@@ -24,7 +24,6 @@ export const LikeButton = ({
   userLikes,
   recipeId,
 }: {
-  // should be UserLike[] since it accepts an array but that causes error;
   userLikes: UserLike[];
   recipeId: string;
 }) => {
