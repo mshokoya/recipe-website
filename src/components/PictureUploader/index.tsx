@@ -1,18 +1,6 @@
 import * as _ from 'lodash';
 import { Upload, Button, Icon } from 'antd';
 import { Dispatch, SetStateAction } from 'react';
-import getConfig from 'next/config';
-
-const {publicRuntimeConfig} = getConfig();
-const {
-  graphcms: {
-    APIURL,
-    APIKEY,
-    PROJECTID,
-    BRANCH,
-    CDNBASE
-  }
-} = publicRuntimeConfig;
 
 export const PictureUploader = ({
   handleSubmitImages,
@@ -29,7 +17,7 @@ export const PictureUploader = ({
   const uploadProps = {
     name: 'file',
     action: file =>
-      `${APIURL}?key=${APIKEY}&path=/${PROJECTID}-${BRANCH}/${file.name}`,
+      `${process.env.APIURL}?key=${process.env.APIKEY}&path=/${process.env.PROJECTID}-${process.env.BRANCH}/${file.name}`,
     data: file => ({ fileUpload: file }),
     onChange: async info => {
       if (info.file.status === 'uploading') {
@@ -38,7 +26,6 @@ export const PictureUploader = ({
 
       if (info.file.status === 'done') {
         const { size, type, filename } = info.file.response;
-        // console.log(size, type, filename);
         var img = new Image();
         img.onload = function() {
           const height = _.get(this, 'naturalHeight');
@@ -49,7 +36,7 @@ export const PictureUploader = ({
               mimeType: type,
               fileName: filename,
               handle: _.get(info, 'file.response.url').replace(
-                CDNBASE,
+                process.env.CDNBASE,
                 '',
               ),
               // statusId: 'PUBLISHED',
@@ -61,8 +48,6 @@ export const PictureUploader = ({
         };
         img.src = info.file.response.url;
       } else if (info.file.status === 'error') {
-        console.log(info);
-        console.log(info.file.name);
         setRecipeState(state => ({ ...state, isPicUploading: false }));
       }
     },

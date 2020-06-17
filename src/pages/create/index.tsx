@@ -18,6 +18,7 @@ const Create = () => {
   if (!user) {
     Router.replace('/');
   }
+  
   return (
     <MainLayout title="Create Recipe">
       <StyledHeader>Create Recipe</StyledHeader>

@@ -2,25 +2,14 @@ import { useMemo } from 'react'
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
-import fetch from 'isomorphic-unfetch';
-import getConfig from 'next/config';
 
 let apolloClient;
-const {publicRuntimeConfig} = getConfig();
-const {
-  graphcms: {
-    GRAPHCMSID,
-    GRAPHCMSURL,
-    BRANCH
-  }
-} = publicRuntimeConfig;
 
 function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: `${GRAPHCMSURL}/${GRAPHCMSID}/${BRANCH}`,
-      // uri: 'https://api.graph.cool/simple/v1/cixmkt2ul01q00122mksg82pn',
+      uri: `${process.env.GRAPHCMSURL}/${process.env.GRAPHCMSID}/${process.env.BRANCH}`,
       credentials: 'same-origin',
     }),
     cache: new InMemoryCache(),

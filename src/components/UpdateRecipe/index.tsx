@@ -38,6 +38,8 @@ export const UpdateRecipe = ({ id }) => {
     isPicUploading: false,
   });
 
+
+
   const initiateUpdateRecipe = async () => {
     const imageId = _.get(data, 'recipe.images.id');
     const inputsImagesHandle = _.get(inputs, 'images.create.handle');
@@ -74,6 +76,8 @@ export const UpdateRecipe = ({ id }) => {
     }
   };
 
+
+
   const {
     inputs,
     setInputs,
@@ -94,18 +98,20 @@ export const UpdateRecipe = ({ id }) => {
     initiateUpdateRecipe,
   );
 
-  if (!isQueryLoading && recipeState.isQueryLoading) {
-    const { __typename, ...loadedRecipe } = _.get(data, 'recipe', {});
-    setInputs(state => ({ ...state, ...loadedRecipe }));
-    setRecipeState(state => ({ ...state, isQueryLoading }));
-  }
-
   if (!data || isFetchUser) return <Loading />;
   const owner = _.get(user, 'sub') || '';
   const recipeOwner = _.get(data, 'recipe.owner') || '';
   if (!user || owner !== recipeOwner) {
     Router.push('/');
   }
+
+  if (!isQueryLoading && recipeState.isQueryLoading) {
+    const { __typename, ...loadedRecipe } = _.get(data, 'recipe', {});
+    setInputs(state => ({ ...state, ...loadedRecipe }));
+    setRecipeState(state => ({ ...state, isQueryLoading }));
+  }
+
+
 
   const disabled =
     isQueryLoading ||
