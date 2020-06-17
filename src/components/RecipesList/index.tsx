@@ -1,61 +1,58 @@
-import _ from 'lodash';
-import {QueryHookOptions, useQuery} from '@apollo/react-hooks';
-import {recipesGraphQL} from '../../graphql/queries/recipies';
-import {userLikesGraphQL} from '../../graphql/queries/userLikes';
-import {RecipeListItem} from '../RecipeListItem';
-import {Row} from 'antd';
-import {Recipe} from '../../../generated/apollo-components';
-import {Error} from '../Error';
-import {Loading} from '../Loading';
-import {Warning} from '../Warning';
-
+import { QueryHookOptions, useQuery } from '@apollo/react-hooks';
+import * as _ from 'lodash';
+import { recipesGraphQL } from '../../graphql/queries/recipes';
+import { userLikesGraphQL } from '../../graphql/queries/userLikes';
+import { Row } from 'antd';
+import { Recipe } from '../../../generated/apollo-components';
+import { Error } from '../Error';
+import { Loading } from '../Loading';
+import { Warning } from '../Warning';
+import { RecipeListItem } from '../RecipeListItem';
 
 export enum queryEnum {
   userLikes = 'userLikes',
-  recipes = 'recipes'
+  recipes = 'recipes',
 }
 
 type RecipesListProps = {
   options?: QueryHookOptions;
   parentRoute: string;
   queryType: queryEnum;
-}
+};
 
 export const RecipesList = ({
   options,
   parentRoute,
-  queryType
+  queryType,
 }: RecipesListProps) => {
-  const query = 
-    queryType === queryEnum.recipes 
-      ? recipesGraphQL 
-      : userLikesGraphQL;
-
-  const {data, loading, error} = useQuery(query, options);
+  const query =
+    queryType === queryEnum.recipes ? recipesGraphQL : userLikesGraphQL;
+  const { loading, data, error } = useQuery(query, options);
 
   const parentArray = _.get(data, queryType);
-  const recipesList = _.map(parentArray, value => _.get(value, 'recipe', value));
+  const recipesList = _.map(parentArray, value =>
+    _.get(value, 'recipe', value),
+  );
 
-  if (loading) return <Loading />
-  if (recipesList.length === 0 ) {
-    return <Warning 
-      warningHeader='No Recipes' 
-      warningText='No recipes are present why not add one ?' 
-    />
-  }
-  if (error || !recipesList) return <Error errorText={`${error}`}/>
-
-
+  if (loading) return <Loading />;
+  if (error || !recipesList) return <Error errorText={`${error}`} />;
+  if (recipesList.length === 0)
+    return (
+      <Warning
+        warningHeader="No Recipes"
+        warningText="No recipes are present. Why not add one?"
+      />
+    );
 
   return (
     <Row>
       {recipesList.map((recipe: Recipe) => (
-        <RecipeListItem 
-          key={`${recipe.id}-${queryType}`} 
-          recipe={recipe} 
+        <RecipeListItem
+          recipe={recipe}
+          key={`${recipe.id}-${queryType}`}
           parentRoute={parentRoute}
         />
       ))}
     </Row>
-  )
-}
+  );
+};
