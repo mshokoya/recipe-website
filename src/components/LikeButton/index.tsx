@@ -24,7 +24,7 @@ export const LikeButton = ({
   userLikes,
   recipeId,
 }: {
-  userLikes: UserLike;
+  userLikes: any;
   recipeId: string;
 }) => {
   const { user, loading: isFetchingUser } = useFetchUser();
